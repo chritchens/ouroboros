@@ -1412,11 +1412,6 @@ static int eth_ipcp_bootstrap(const struct ipcp_config * conf)
                 goto fail_device;
         }
 
-        if (fcntl(eth_data.s_fd, F_SETFL, flags | O_NONBLOCK)) {
-                log_err("Failed to set socket non-blocking.");
-                goto fail_device;
-        }
-
     #if defined(IPCP_ETH_QDISC_BYPASS)
         if (setsockopt(eth_data.s_fd, SOL_PACKET, PACKET_QDISC_BYPASS,
                        &qdisc_bypass, sizeof(qdisc_bypass))) {
